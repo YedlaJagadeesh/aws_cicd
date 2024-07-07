@@ -8,7 +8,16 @@
 </head>
 <body>
     <h1>Platformer Game</h1>
-    <canvas id="gameCanvas" width="800" height="600"></canvas>
+    <div id="gameContainer">
+        <div class="platform" style="bottom: 0; left: 0; width: 800px; height: 20px;"></div>
+        <div class="platform" style="bottom: 150px; left: 150px; width: 100px; height: 20px;"></div>
+        <div class="platform" style="bottom: 300px; left: 300px; width: 100px; height: 20px;"></div>
+        <div class="platform" style="bottom: 450px; left: 450px; width: 100px; height: 20px;"></div>
+        <div class="player" id="player" style="bottom: 20px; left: 50px;"></div>
+        <div class="coin" id="coin1" style="bottom: 170px; left: 180px;"></div>
+        <div class="coin" id="coin2" style="bottom: 320px; left: 330px;"></div>
+        <div class="coin" id="coin3" style="bottom: 470px; left: 480px;"></div>
+    </div>
     <script src="game.js"></script>
 </body>
 </html>
