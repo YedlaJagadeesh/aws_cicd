@@ -3,61 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Platformer Game</title>
+    <title>Complex Interface</title>
     <style>
         body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
             margin: 0;
-            background-color: #87CEEB;
             font-family: Arial, sans-serif;
         }
-
-        h1 {
-            color: #fff;
+        .container {
+            display: grid;
+            grid-template-areas: 
+                'header header header'
+                'sidebar main main'
+                'sidebar footer footer';
+            grid-template-rows: 60px 1fr 40px;
+            grid-template-columns: 200px 1fr 1fr;
+            height: 100vh;
         }
-
-        #gameContainer {
-            position: relative;
-            width: 800px;
-            height: 600px;
-            background-color: #000;
+        .header {
+            grid-area: header;
+            background-color: #333;
+            color: white;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
         }
-
-        .platform {
-            position: absolute;
-            background-color: green;
+        .sidebar {
+            grid-area: sidebar;
+            background-color: #444;
+            color: white;
+            padding: 20px;
         }
-
-        .player {
-            position: absolute;
-            width: 50px;
-            height: 50px;
-            background-color: red;
+        .main {
+            grid-area: main;
+            background-color: #f4f4f4;
+            padding: 20px;
         }
-
-        .coin {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background-color: gold;
+        .footer {
+            grid-area: footer;
+            background-color: #333;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .card {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
         }
     </style>
 </head>
 <body>
-    <h1>Platformer Game</h1>
-    <div id="gameContainer">
-        <div class="platform" style="bottom: 0; left: 0; width: 800px; height: 20px;"></div>
-        <div class="platform" style="bottom: 150px; left: 150px; width: 100px; height: 20px;"></div>
-        <div class="platform" style="bottom: 300px; left: 300px; width: 100px; height: 20px;"></div>
-        <div class="platform" style="bottom: 450px; left: 450px; width: 100px; height: 20px;"></div>
-        <div class="player" style="bottom: 20px; left: 50px;"></div>
-        <div class="coin" style="bottom: 170px; left: 180px;"></div>
-        <div class="coin" style="bottom: 320px; left: 330px;"></div>
-        <div class="coin" style="bottom: 470px; left: 480px;"></div>
+    <div class="container">
+        <header class="header">
+            <div class="navbar">
+                <div class="logo">My Dashboard</div>
+                <ul class="nav-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+        </header>
+        <aside class="sidebar">
+            <h2>Sidebar</h2>
+            <ul>
+                <li><a href="#">Link 1</a></li>
+                <li><a href="#">Link 2</a></li>
+                <li><a href="#">Link 3</a></li>
+                <li><a href="#">Link 4</a></li>
+            </ul>
+        </aside>
+        <main class="main">
+            <h1>Main Content</h1>
+            <div class="card">
+                <h2>Card Title</h2>
+                <p>This is some content inside a card.</p>
+            </div>
+            <div class="card">
+                <h2>Another Card</h2>
+                <p>This is some more content inside another card.</p>
+            </div>
+        </main>
+        <footer class="footer">
+            <p>&copy; 2024 My Dashboard</p>
+        </footer>
     </div>
 </body>
 </html>
