@@ -1,134 +1,61 @@
-const canvas = document.getElementById('gameCanvas');
-const ctx = canvas.getContext('2d');
+const gameContainer = document.getElementById('gameContainer');
+const player = document.getElementById('player');
+const coins = [document.getElementById('coin1'), document.getElementById('coin2'), document.getElementById('coin3')];
 
-const player = {
-    x: 50,
-    y: canvas.height - 70,
-    width: 50,
-    height: 50,
-    color: 'red',
-    dy: 0,
-    jumpForce: 15,
-    grounded: false,
-    speed: 5,
-    dx: 0,
-    gravity: 1,
-};
-
-const keys = {
-    right: false,
-    left: false,
-    up: false,
-};
-
-const platforms = [
-    { x: 0, y: canvas.height - 20, width: canvas.width, height: 20, color: 'green' },
-    { x: 150, y: 450, width: 100, height: 20, color: 'green' },
-    { x: 300, y: 300, width: 100, height: 20, color: 'green' },
-    { x: 450, y: 200, width: 100, height: 20, color: 'green' },
-];
-
-const coins = [
-    { x: 180, y: 420, width: 20, height: 20, color: 'gold' },
-    { x: 330, y: 270, width: 20, height: 20, color: 'gold' },
-    { x: 480, y: 170, width: 20, height: 20, color: 'gold' },
-];
-
+let playerPos = { x: 50, y: 580, dx: 0, dy: 0, speed: 5, gravity: 1, jump: -15 };
+let keys = { left: false, right: false, up: false };
 let score = 0;
 
-function drawPlayer() {
-    ctx.fillStyle = player.color;
-    ctx.fillRect(player.x, player.y, player.width, player.height);
-}
+function update() {
+    if (keys.left) playerPos.dx = -playerPos.speed;
+    if (keys.right) playerPos.dx = playerPos.speed;
+    if (keys.up && playerPos.dy === 0) playerPos.dy = playerPos.jump;
 
-function drawPlatforms() {
-    platforms.forEach(platform => {
-        ctx.fillStyle = platform.color;
-        ctx.fillRect(platform.x, platform.y, platform.width, platform.height);
-    });
-}
+    playerPos.dy += playerPos.gravity;
+    playerPos.x += playerPos.dx;
+    playerPos.y += playerPos.dy;
+    playerPos.dx *= 0.9;
 
-function drawCoins() {
+    if (playerPos.y > 580) {
+        playerPos.y = 580;
+        playerPos.dy = 0;
+    }
+
+    player.style.left = playerPos.x + 'px';
+    player.style.bottom = playerPos.y + 'px';
+
     coins.forEach(coin => {
-        ctx.fillStyle = coin.color;
-        ctx.fillRect(coin.x, coin.y, coin.width, coin.height);
-    });
-}
-
-function drawScore() {
-    ctx.fillStyle = 'black';
-    ctx.font = '20px Arial';
-    ctx.fillText('Score: ' + score, 10, 20);
-}
-
-function updatePlayer() {
-    if (keys.right) {
-        player.dx = player.speed;
-    } else if (keys.left) {
-        player.dx = -player.speed;
-    } else {
-        player.dx = 0;
-    }
-
-    if (keys.up && player.grounded) {
-        player.dy = -player.jumpForce;
-        player.grounded = false;
-    }
-
-    player.dy += player.gravity;
-    player.x += player.dx;
-    player.y += player.dy;
-
-    platforms.forEach(platform => {
-        if (player.x < platform.x + platform.width &&
-            player.x + player.width > platform.x &&
-            player.y < platform.y + platform.height &&
-            player.y + player.height > platform.y) {
-            player.grounded = true;
-            player.dy = 0;
-            player.y = platform.y - player.height;
-        }
-    });
-
-    if (player.y + player.height > canvas.height) {
-        player.grounded = true;
-        player.dy = 0;
-        player.y = canvas.height - player.height;
-    }
-
-    coins.forEach((coin, index) => {
-        if (player.x < coin.x + coin.width &&
-            player.x + player.width > coin.x &&
-            player.y < coin.y + coin.height &&
-            player.y + player.height > coin.y) {
-            coins.splice(index, 1);
+        if (checkCollision(player, coin)) {
+            coin.style.display = 'none';
             score += 10;
+            console.log('Score: ' + score);
         }
     });
 
-    player.x = Math.max(0, Math.min(canvas.width - player.width, player.x));
+    requestAnimationFrame(update);
 }
 
-function gameLoop() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    drawPlatforms();
-    drawPlayer();
-    drawCoins();
-    drawScore();
-    updatePlayer();
-    requestAnimationFrame(gameLoop);
+function checkCollision(rect1, rect2) {
+    const rect1Pos = rect1.getBoundingClientRect();
+    const rect2Pos = rect2.getBoundingClientRect();
+    return !(
+        rect1Pos.top > rect2Pos.bottom ||
+        rect1Pos.bottom < rect2Pos.top ||
+        rect1Pos.right < rect2Pos.left ||
+        rect1Pos.left > rect2Pos.right
+    );
 }
 
 document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowRight') keys.right = true;
     if (e.key === 'ArrowLeft') keys.left = true;
+    if (e.key === 'ArrowRight') keys.right = true;
     if (e.key === 'ArrowUp') keys.up = true;
 });
 
 document.addEventListener('keyup', (e) => {
-    if (e.key === 'ArrowRight') keys.right = false;
     if (e.key === 'ArrowLeft') keys.left = false;
+    if (e.key === 'ArrowRight') keys.right = false;
     if (e.key === 'ArrowUp') keys.up = false;
 });
 
-gameLoop();
+update();
