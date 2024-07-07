@@ -1,37 +1,63 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>AAR DEMO | AWS CLOUD DEPLOYMENT</title>
-  <style>
-    body {
-      color: #000080;
-      background-color: #FFFFFF;
-      font-family: Arial, sans-serif;
-      font-size: 14px;
-    }
-    
-    h1 {
-      font-size: 500%;
-      font-weight: normal;
-      margin-bottom: 0;
-    }
-    
-    h2 {
-      font-size: 200%;
-      font-weight: normal;
-      margin-bottom: 0;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Platformer Game</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #87CEEB;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            color: #fff;
+        }
+
+        #gameContainer {
+            position: relative;
+            width: 800px;
+            height: 600px;
+            background-color: #000;
+        }
+
+        .platform {
+            position: absolute;
+            background-color: green;
+        }
+
+        .player {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: red;
+        }
+
+        .coin {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: gold;
+        }
+    </style>
 </head>
 <body>
-  <div align="center">
-    <img src="https://s3.ap-south-1.amazonaws.com/www.basava.com/aar_logo_final.png" style="max-width: 20%;">
-    <h1>Congratulations!!! </h1>
-      <h2>CICD PIPELINE | YEDLA JAGADEESH</h2>
-    <h3>This application was deployed using AWS CodeDeploy.</h3>
-    <p>For next steps, read the <a href="http://aws.amazon.com/documentation/codedeploy">AWS CodeDeploy Documentation</a>.</p>
-  </div>
+    <h1>Platformer Game</h1>
+    <div id="gameContainer">
+        <div class="platform" style="bottom: 0; left: 0; width: 800px; height: 20px;"></div>
+        <div class="platform" style="bottom: 150px; left: 150px; width: 100px; height: 20px;"></div>
+        <div class="platform" style="bottom: 300px; left: 300px; width: 100px; height: 20px;"></div>
+        <div class="platform" style="bottom: 450px; left: 450px; width: 100px; height: 20px;"></div>
+        <div class="player" style="bottom: 20px; left: 50px;"></div>
+        <div class="coin" style="bottom: 170px; left: 180px;"></div>
+        <div class="coin" style="bottom: 320px; left: 330px;"></div>
+        <div class="coin" style="bottom: 470px; left: 480px;"></div>
+    </div>
 </body>
 </html>
-
