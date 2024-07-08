@@ -1,109 +1,73 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Complex Interface</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
     <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
-        .container {
-            display: grid;
-            grid-template-areas: 
-                'header header header'
-                'sidebar main main'
-                'sidebar footer footer';
-            grid-template-rows: 60px 1fr 40px;
-            grid-template-columns: 200px 1fr 1fr;
+        @import url("https://fonts.googleapis.com/css2?family=Bree+Serif&family=Caveat:wght@400;700&family=Lobster&family=Monoton&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display+SC:ital,wght@0,400;0,700;1,700&family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Roboto:ital,wght@0,400;0,700;1,400;1,700&family=Source+Sans+Pro:ital,wght@0,400;0,700;1,700&family=Work+Sans:ital,wght@0,400;0,700;1,700&display=swap");
+
+        .bg-container {
+            background-image: url("https://d1tgh8fmlzexmh.cloudfront.net/ccbp-static-website/arvrbg.png");
             height: 100vh;
+            background-size: cover;
         }
-        .header {
-            grid-area: header;
-            background-color: #333;
-            color: white;
-            display: flex;
-            align-items: center;
-            padding: 0 20px;
-        }
-        .sidebar {
-            grid-area: sidebar;
-            background-color: #444;
-            color: white;
-            padding: 20px;
-        }
-        .main {
-            grid-area: main;
-            background-color: #f4f4f4;
-            padding: 20px;
-        }
-        .footer {
-            grid-area: footer;
-            background-color: #333;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+
         .card {
-            background-color: white;
+            background-color: #ffffff;
             padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
         }
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+
+        .heading {
+            color: #5752ab;
+            font-family: Bree Serif;
+            font-size: 25px;
         }
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 20px;
+
+        .paragraph {
+            color: #323f4b;
+            font-family: Roboto;
         }
-        .nav-links a {
-            color: white;
-            text-decoration: none;
+
+        .learn-more {
+            border-color: #d7dfe9;
+            color: #171f46;
+            border-radius: 10px;
+            padding-right: 25px;
+            padding-left: 25px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            margin-right: 10px;
+        }
+
+        .save-draft {
+            border-radius: 10px;
+            padding-right: 25px;
+            padding-left: 25px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            background-color: #5752ab;
+            color: #ffffff;
+            margin-left: 10px;
         }
     </style>
 </head>
+
 <body>
-    <div class="container">
-        <header class="header">
-            <div class="navbar">
-                <div class="logo">My Dashboard</div>
-                <ul class="nav-links">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
+    <div class="bg-container d-flex flex-column justify-content-end">
+        <div class="card">
+            <h1 class="heading">Advanced Technologies</h1>
+            <p class="paragraph">Machinery and equipment developed from the application of scientific knowledge</p>
+            <div>
+                <button class="btn learn-more">Learn more</button>
+                <button class="btn save-draft">Save Draft</button>
             </div>
-        </header>
-        <aside class="sidebar">
-            <h2>Sidebar</h2>
-            <ul>
-                <li><a href="#">Link 1</a></li>
-                <li><a href="#">Link 2</a></li>
-                <li><a href="#">Link 3</a></li>
-                <li><a href="#">Link 4</a></li>
-            </ul>
-        </aside>
-        <main class="main">
-            <h1>Main Content</h1>
-            <div class="card">
-                <h2>Card Title</h2>
-                <p>This is some content inside a card.</p>
-            </div>
-            <div class="card">
-                <h2>Another Card</h2>
-                <p>This is some more content inside another card.</p>
-            </div>
-        </main>
-        <footer class="footer">
-            <p>&copy; 2024 My Dashboard</p>
-        </footer>
+        </div>
     </div>
 </body>
+
 </html>
